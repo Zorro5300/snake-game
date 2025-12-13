@@ -1,7 +1,7 @@
 import random
 from typing import Optional, Tuple
-import pygame
 
+import pygame
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -18,8 +18,8 @@ LEFT = (-1, 0)
 RIGHT = (1, 0)
 
 # Глобальные переменные с правильными типами (добавить аннотации!)
-screen: pygame.Surface = None
-clock: pygame.time.Clock = None
+screen: 'pygame.Surface' = None
+clock: 'pygame.time.Clock' = None
 
 
 class GameObject:
@@ -190,13 +190,12 @@ def main() -> None:
         apple.draw(screen)
         snake.draw(screen)
         pygame.display.update()
+        clock.tick(20)
 
-        # ОБЯЗАТЕЛЬНО вызывать clock.tick() в цикле!
         clock.tick(20)
 
     pygame.quit()
 
 
-# ВАЖНО: main() должен вызываться ТОЛЬКО внутри if __name__ == '__main__':
 if __name__ == '__main__':
     main()
