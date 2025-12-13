@@ -11,15 +11,13 @@ GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
 BOARD_BACKGROUND_COLOR = (0, 0, 0)
 
-# Константы направлений (добавить!)
 UP = (0, -1)
 DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
-# Глобальные переменные с правильными типами (добавить аннотации!)
-screen: 'pygame.Surface' = None
-clock: 'pygame.time.Clock' = None
+screen = None  # type: pygame.Surface
+clock = None  # type: pygame.time.Clock
 
 
 class GameObject:
@@ -74,7 +72,7 @@ class Snake(GameObject):
         self.body_color = (0, 255, 0)
         self.length = 1
         self.positions = [self.position]
-        self.direction = RIGHT  # Использовать константу!
+        self.direction = RIGHT
         self.next_direction = None
         self.last = None
 
@@ -190,8 +188,6 @@ def main() -> None:
         apple.draw(screen)
         snake.draw(screen)
         pygame.display.update()
-        clock.tick(20)
-
         clock.tick(20)
 
     pygame.quit()
