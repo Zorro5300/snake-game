@@ -1,7 +1,7 @@
 import random
 from typing import Optional, Tuple
-
 import pygame
+
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -11,8 +11,15 @@ GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
 BOARD_BACKGROUND_COLOR = (0, 0, 0)
 
-screen = None
-clock = None
+# Константы направлений (добавить!)
+UP = (0, -1)
+DOWN = (0, 1)
+LEFT = (-1, 0)
+RIGHT = (1, 0)
+
+# Глобальные переменные с правильными типами (добавить аннотации!)
+screen: pygame.Surface = None
+clock: pygame.time.Clock = None
 
 
 class GameObject:
@@ -67,7 +74,7 @@ class Snake(GameObject):
         self.body_color = (0, 255, 0)
         self.length = 1
         self.positions = [self.position]
-        self.direction = (1, 0)
+        self.direction = RIGHT  # Использовать константу!
         self.next_direction = None
         self.last = None
 
@@ -112,7 +119,7 @@ class Snake(GameObject):
         self.length = 1
         self.position = ((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
         self.positions = [self.position]
-        self.direction = (1, 0)
+        self.direction = RIGHT
         self.next_direction = None
         self.last = None
 
@@ -141,13 +148,13 @@ class Snake(GameObject):
 def handle_keys(snake: Snake, event: pygame.event.Event) -> None:
     """Обрабатывает нажатия клавиш для управления змейкой."""
     if event.key == pygame.K_UP:
-        snake.next_direction = (0, -1)
+        snake.next_direction = UP
     elif event.key == pygame.K_DOWN:
-        snake.next_direction = (0, 1)
+        snake.next_direction = DOWN
     elif event.key == pygame.K_LEFT:
-        snake.next_direction = (-1, 0)
+        snake.next_direction = LEFT
     elif event.key == pygame.K_RIGHT:
-        snake.next_direction = (1, 0)
+        snake.next_direction = RIGHT
 
 
 def main() -> None:
@@ -183,10 +190,13 @@ def main() -> None:
         apple.draw(screen)
         snake.draw(screen)
         pygame.display.update()
+
+        # ОБЯЗАТЕЛЬНО вызывать clock.tick() в цикле!
         clock.tick(20)
 
     pygame.quit()
 
 
+# ВАЖНО: main() должен вызываться ТОЛЬКО внутри if __name__ == '__main__':
 if __name__ == '__main__':
     main()
