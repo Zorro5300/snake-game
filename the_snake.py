@@ -19,8 +19,8 @@ RIGHT = (1, 0)
 screen = None
 clock = None
 
-screen: 'pygame.Surface' = None
-clock: 'pygame.time.Clock' = None
+screen: pygame.Surface = None
+clock: pygame.time.Clock = None
 
 screen = None
 clock = None
@@ -200,11 +200,6 @@ def main() -> None:
 
     pygame.quit()
 
-
-# ВАЖНО: добавь эти строки чтобы помочь тестам распознать типы
-if False:  # Этот блок никогда не выполнится, но поможет тестам
-    screen: pygame.Surface
-    clock: pygame.time.Clock
 
 if __name__ == '__main__':
     main()
